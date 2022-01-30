@@ -1,5 +1,6 @@
 package myPackage;
 
+import com.mysql.cj.callback.UsernameCallback;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,17 +19,12 @@ public class ShowItem extends javax.swing.JFrame {
     public ShowItem() {
         initComponents();
         DatabaseOperations databaseOperations = new DatabaseOperations();
-        databaseOperations.loadTableData(jTable1);
+        databaseOperations.loadTableData(dataModel);
+        LoginFrame loginFrame = new LoginFrame();
+        System.out.println(loginFrame.txtUsername.getText());
+        System.out.println("eloo2");
     }
 
-    
-   
-    
-    
-        
-    
-   
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -36,7 +32,7 @@ public class ShowItem extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        dataModel = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,8 +44,16 @@ public class ShowItem extends javax.swing.JFrame {
         btnBack.setText("Back");
         btnBack.setToolTipText("");
         btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        dataModel.setBackground(new java.awt.Color(102, 102, 102));
+        dataModel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dataModel.setForeground(new java.awt.Color(204, 204, 204));
+        dataModel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -57,7 +61,9 @@ public class ShowItem extends javax.swing.JFrame {
                 "ID", "Name", "Type", "Description"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        dataModel.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        dataModel.setSelectionForeground(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setViewportView(dataModel);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,7 +100,27 @@ public class ShowItem extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        this.hide();
+        menu.setVisible(true);
+        /*if(username.ToString().equalsIgnoreCase("Guest"))
+        {
+            Menu menu = new Menu(1);
+            menu.setVisible(true);
+            this.hide();
+        }
+        else
+        {
+            Menu menu = new Menu();
+            this.hide();
+            menu.setVisible(true);
+        }*/
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,8 +136,8 @@ public class ShowItem extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    public javax.swing.JTable dataModel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

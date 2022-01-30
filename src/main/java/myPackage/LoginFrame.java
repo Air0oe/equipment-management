@@ -163,6 +163,7 @@ public class LoginFrame extends javax.swing.JFrame {
             Menu menu = new Menu(1);
             menu.setVisible(true);
             this.hide();
+           
         }
         else 
         {
