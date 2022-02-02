@@ -1,10 +1,14 @@
 package myPackage;
 
 
+
+
 public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
+       
+        
         pack();
         
         progressBar.setStringPainted(true);
